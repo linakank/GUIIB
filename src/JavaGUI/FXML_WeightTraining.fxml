@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bwagner.FXML_WeightTrainingController">
+    <padding>
+        <Insets top="5.0" right="25.0" bottom="25.0" left="25.0" />
+    </padding>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem fx:id="new_menu" mnemonicParsing="false" onAction="#handlerMenuItems" text="New" />
+                  <MenuItem fx:id="save_menu" mnemonicParsing="false" onAction="#handlerMenuItems" text="Save" />
+                  <MenuItem fx:id="closeout_menu" mnemonicParsing="false" onAction="#handlerMenuItems" text="Close Out Year" />
+                  <MenuItem fx:id="exit_menu" mnemonicParsing="false" onAction="#handlerMenuItems" text="Exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Player">
+            <items>
+                  <MenuItem fx:id="addPlayer_menu" mnemonicParsing="false" onAction="#handlerMenuItems" text="Add Player" />
+                  <MenuItem fx:id="editPlayer_menu" mnemonicParsing="false" onAction="#handlerMenuItems" text="Edit Player" />
+                  <MenuItem fx:id="deletePlayer_menu" mnemonicParsing="false" onAction="#handlerMenuItems" text="Delete Player" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Filter">
+              <items>
+                <MenuItem fx:id="filterPlayers_menu" mnemonicParsing="false" onAction="#handlerMenuItems" text="Filter Players" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Groups">
+              <items>
+                <MenuItem fx:id="autoGenerateGroups_menu" mnemonicParsing="false" onAction="#handlerMenuItems" text="Generate Groups" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+        <TableView fx:id="player_table" prefHeight="560.0" prefWidth="480.0">
+          <columns>
+            <TableColumn fx:id="lastName_col" prefWidth="100.0" text="Last Name" />
+            <TableColumn fx:id="firstName_col" prefWidth="100.0" text="First Name" />
+              <TableColumn fx:id="team_col" prefWidth="45.0" text="Team" />
+              <TableColumn fx:id="class_col" prefWidth="45.0" text="Class" />
+              <TableColumn fx:id="bench_col" prefWidth="55.0" text="Bench" />
+              <TableColumn fx:id="squat_col" prefWidth="55.0" text="Squat" />
+              <TableColumn fx:id="incline_col" prefWidth="55.0" text="Incline" />
+              <TableColumn fx:id="power_col" prefWidth="55.0" text="Power" />
+          </columns>
+        </TableView>
+   </center>
+   <right>
+      <StackPane BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="addPlayer_vbox" prefHeight="575.0" prefWidth="278.0" visible="true">
+               <children>
+                  <StackPane minWidth="285.0" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: Gray;">
+                     <children>
+                        <Label text="Add Player" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <GridPane prefHeight="300.0" prefWidth="271.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="110.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="185.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label minHeight="30.0" prefHeight="30.0" text="First Name">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Last Name" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Team" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Classification" GridPane.rowIndex="3">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Bench Max" GridPane.rowIndex="4">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Squat Max" GridPane.rowIndex="5">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Incline Max" GridPane.rowIndex="6">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Power Clean Max" GridPane.rowIndex="7">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="firstName_field1" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="lastName_field1" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <ComboBox fx:id="team_combo1" minHeight="30.0" prefHeight="30.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="class_combo1" minHeight="30.0" prefHeight="30.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="bench_field1" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="squat_field1" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="incline_field1" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="power_field1" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                     </children>
+                  </GridPane>
+                  <GridPane vgap="10.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="playerAdd_button" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefWidth="60.0" text="Add" textAlignment="CENTER" />
+                        <Button fx:id="clear_button1" mnemonicParsing="false" onAction="#handleButtonAction" prefWidth="60.0" text="Clear" GridPane.columnIndex="1" />
+                     </children>
+                     <padding>
+                        <Insets top="25.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox fx:id="editPlayer_vbox" layoutX="10.0" layoutY="10.0" prefHeight="575.0" prefWidth="278.0" visible="false">
+               <children>
+                  <StackPane minWidth="285.0" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: Gray;">
+                     <children>
+                        <Label text="Edit Player" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <GridPane prefHeight="300.0" prefWidth="271.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="110.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="185.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label minHeight="30.0" prefHeight="30.0" text="First Name">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Last Name" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Team" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Classification" GridPane.rowIndex="3">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Bench Max" GridPane.rowIndex="4">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Squat Max" GridPane.rowIndex="5">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Incline Max" GridPane.rowIndex="6">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Power Clean Max" GridPane.rowIndex="7">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="firstName_field2" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="lastName_field2" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <ComboBox fx:id="team_combo2" minHeight="30.0" prefHeight="30.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="class_combo2" minHeight="30.0" prefHeight="30.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="bench_field2" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="squat_field2" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="incline_field2" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="power_field2" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                     </children>
+                  </GridPane>
+                  <GridPane vgap="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <padding>
+                        <Insets top="25.0" />
+                     </padding>
+                     <children>
+                        <Button fx:id="clear_button2" mnemonicParsing="false" onAction="#handleButtonAction" prefWidth="60.0" text="Clear" GridPane.columnIndex="1" />
+                        <Button fx:id="update_button" mnemonicParsing="false" onAction="#handleButtonAction" text="Update" />
+                     </children>
+                  </GridPane>
+                  <StackPane maxHeight="130.0" prefHeight="130.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label fx:id="edit_message_label" alignment="TOP_LEFT" prefHeight="120.0" prefWidth="270.0" wrapText="true" />
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+            <VBox fx:id="deletePlayer_vbox" layoutX="10.0" layoutY="10.0" prefHeight="130.0" visible="false">
+               <children>
+                  <StackPane minWidth="285.0" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: Gray;">
+                     <children>
+                        <Label text="Delete Player" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <GridPane prefHeight="300.0" prefWidth="271.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="110.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="185.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label minHeight="30.0" prefHeight="30.0" text="First Name">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Last Name" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Team" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Classification" GridPane.rowIndex="3">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Bench Max" GridPane.rowIndex="4">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Squat Max" GridPane.rowIndex="5">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Incline Max" GridPane.rowIndex="6">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Power Clean Max" GridPane.rowIndex="7">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="firstName_field3" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="lastName_field3" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <ComboBox fx:id="team_combo3" minHeight="30.0" prefHeight="30.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="class_combo3" minHeight="30.0" prefHeight="30.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="bench_field3" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="squat_field3" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="incline_field3" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="power_field3" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                     </children>
+                  </GridPane>
+                  <GridPane vgap="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <padding>
+                        <Insets top="25.0" />
+                     </padding>
+                     <children>
+                        <Button fx:id="clear_button3" mnemonicParsing="false" onAction="#handleButtonAction" prefWidth="60.0" text="Clear" GridPane.columnIndex="1" />
+                        <Button fx:id="playerDelete_button" mnemonicParsing="false" onAction="#handleButtonAction" text="Delete" />
+                     </children>
+                  </GridPane>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="delete_message_label" alignment="TOP_LEFT" prefHeight="120.0" prefWidth="270.0" wrapText="true" />
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+            <VBox fx:id="filterPlayer_vbox" layoutX="10.0" layoutY="10.0" prefHeight="575.0" prefWidth="278.0" visible="false">
+               <children>
+                  <StackPane minWidth="285.0" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: Gray;">
+                     <children>
+                        <Label text="Filter Players" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <GridPane prefHeight="300.0" prefWidth="271.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="110.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="185.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label minHeight="30.0" prefHeight="30.0" text="First Name">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Last Name" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Team" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Classification" GridPane.rowIndex="3">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Bench Max" GridPane.rowIndex="4">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Squat Max" GridPane.rowIndex="5">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Incline Max" GridPane.rowIndex="6">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label minHeight="30.0" prefHeight="30.0" text="Power Clean Max" GridPane.rowIndex="7">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="firstName_field4" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="lastName_field4" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <ComboBox fx:id="team_combo4" minHeight="30.0" prefHeight="30.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="class_combo4" minHeight="30.0" prefHeight="30.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="bench_field4" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="squat_field4" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="incline_field4" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="power_field4" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets right="15.0" />
+                           </GridPane.margin>
+                        </TextField>
+                     </children>
+                  </GridPane>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Button fx:id="clear_button4" mnemonicParsing="false" onAction="#handleButtonAction" prefWidth="100.0" text="Clear">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="filterPrint_button" mnemonicParsing="false" prefWidth="100.0" text="Print Filter" onAction="#handleButtonAction">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="filter_message_label" alignment="TOP_LEFT" prefHeight="130.0" prefWidth="260.0" wrapText="true"  />
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+            <VBox fx:id="autogroup_vbox" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" visible="false">
+               <children>
+                  <StackPane prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: gray;">
+                     <children>
+                        <Label style="-fx-background-color: gray;" text="Generate Groups" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <StackPane prefHeight="57.0" prefWidth="285.0">
+                     <children>
+                        <Spinner fx:id="autogroup_spinner" prefHeight="35.0" prefWidth="70.0" />
+                     </children>
+                  </StackPane>
+                  <ScrollPane>
+                     <VBox.margin>
+                        <Insets bottom="25.0" />
+                     </VBox.margin>
+                     <content>
+                        <ListView fx:id="autogroup_listview" prefHeight="200.0" prefWidth="283.0" style="-fx-font-size: 16px" />
+                     </content>
+                  </ScrollPane>
+                  <GridPane vgap="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="130.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="155.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="groupGenerate_button" minWidth="100.0" mnemonicParsing="false" onAction="#handleButtonAction" text=" Generate Groups" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Label text="Group Size">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="groupSize_field" maxWidth="40.0" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets right="20.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label text="Filter by Team" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="group_TeamFilter_comboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="groupPrint_button" alignment="CENTER" contentDisplay="CENTER" minWidth="110.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Print Groups" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="30.0" />
+                           </GridPane.margin>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </right>
+</BorderPane>

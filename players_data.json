@@ -1,0 +1,17 @@
+[{ "firstName": "Staubach",
+"lastName": "Roger",
+"team": "Varsity",
+"benchMax": 12,
+"squatMax": 200, 
+"inclineMax": 400,
+"powerMax": 175,
+"classification": 280},
+{ "firstName": "Dorsett  ",
+"lastName": "Tony",
+"team": "Purple",
+"benchMax": 9,
+"squatMax": 185, 
+"inclineMax": 425,
+"powerMax": 150,
+"classification": 300}]
+
