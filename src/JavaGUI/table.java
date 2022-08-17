@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +25,7 @@ public class table extends JFrame {
     private JComboBox lastCombo;
     private JTextField textField1;
     private JButton saveButton;
+    private JButton sortByFirstNameButton;
 
     public table() {
         super("Players list");
@@ -66,7 +66,56 @@ public class table extends JFrame {
 
             }
         });
+        sortByFirstNameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList <Player>  sortplayers=  sortByFirstName();
+                createTable(sortplayers);;
+            }
+
+            private   ArrayList <Player> sortByFirstName() {
+                    //showTable.get
+                    // create new list and copy player's data into it
+                    ArrayList <Player> list = copyList(players);
+
+                    // selection sort algorithm
+
+                    int i, j;
+                    int min;
+                    Player temp;
+
+                    for (i = 0; i < list.size()-1; i++)
+                    {
+                        min = i;
+                        for (j = i+1; j < list.size(); j++)
+                        {
+                            if (list.get(j).getFirstName().compareTo(list.get(min).getFirstName()) < 0)
+                                min = j;
+                        }
+                        // swap
+                        temp = list.get(i);
+                        list.set(i, list.get(min));
+                        list.set(min, temp);
+                    }
+
+                    return list;
+
+
+            }
+        });
     }
+
+
+    public ArrayList<Player> copyList(ArrayList<Player> list)
+    {
+        ArrayList <Player> temp = new ArrayList<>();
+        for(Player player: list)
+        {
+            temp.add(player);
+        }
+        return temp;
+    }
+
 
     private ArrayList<Player> filterTeam(ArrayList<Player> players) {
         ArrayList<Player> teamplayers = new ArrayList<>();
@@ -136,6 +185,7 @@ public class table extends JFrame {
         columns.getColumn(1).setCellRenderer(centerRenderer);
         columns.getColumn(2).setCellRenderer(centerRenderer);
         columns.getColumn(3).setCellRenderer(centerRenderer);
+        showTable.setAutoCreateRowSorter(true);
 
     }
 

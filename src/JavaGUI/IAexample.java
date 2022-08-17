@@ -39,6 +39,7 @@ public class IAexample extends JFrame {
     private JButton viewButton;
     private JButton showListButton;
     private JButton saveButton;
+    private JButton deleteSelectedButton;
     private JTable table;
     private DefaultListModel listPlayersModel;
     JFrame f = new JFrame();
@@ -57,8 +58,6 @@ public class IAexample extends JFrame {
         listPlayersModel = new DefaultListModel();
         listPlayers.setModel(listPlayersModel);
         start();
-
-
 
 
         addButton.addActionListener(new ActionListener() {
@@ -135,11 +134,20 @@ public class IAexample extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 savePlayersFile();
 
-                    }
-
+            }
 
 
         });
+
+        deleteSelectedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buttonDeleteClick(e);
+            }
+
+
+        });
+
 
     }
 
@@ -154,6 +162,7 @@ public class IAexample extends JFrame {
         saveFileFromString("players_data.json", ja.toString());
 
     }
+
     private boolean saveFileFromString(String filename, String data) {
         try {
             FileWriter fw = new FileWriter(filename);
@@ -169,7 +178,6 @@ public class IAexample extends JFrame {
     }
 
 
-
     public void listPlayerSelection(ListSelectionEvent e) {
         int playerNumber = listPlayers.getSelectedIndex();
         if (playerNumber >= 0) {
@@ -177,11 +185,14 @@ public class IAexample extends JFrame {
             texFirstName.setText(p.getFirstName());
             textLastName.setText(p.getLastName());
             textBenchMax.setText(String.valueOf(p.getBenchMax()));
+
             int teamindex = listteam.indexOf(p.getTeam());
             comboBoxTeam.setSelectedIndex(teamindex);
             //   comboBoxTeam.setSelectedIndex(teamindex);
+
             int clasificationindex = listclasification.indexOf(p.getClassification());
             comboBoxClasification.setSelectedIndex(clasificationindex);
+
             textPowerCleanMax.setText(Integer.toString(p.getPowerMax()));
             textSquartMax.setText(Integer.toString(p.getSquatMax()));
             textInclineMax.setText(Integer.toString(p.getInclineMax()));
@@ -209,7 +220,13 @@ public class IAexample extends JFrame {
             refreshPlayersList();
 
         }
-        ;
+
+    }
+
+    private void buttonDeleteClick(ActionEvent e) {
+        int playerNumber = listPlayers.getSelectedIndex();
+        players.remove(playerNumber);
+        refreshPlayersList();
     }
 
     private void start() {
@@ -228,8 +245,8 @@ public class IAexample extends JFrame {
         comboBoxClasification.setSelectedIndex(0);
 
         //showTable(players);
-      //  showPlayersList(players);
-     refreshPlayersList();
+        //  showPlayersList(players);
+        refreshPlayersList();
     }
 
     public static void main(String[] args) {
@@ -238,9 +255,7 @@ public class IAexample extends JFrame {
     }
 
 
-
-
-    public void showPlayersList( ArrayList<Player> players) {
+    public void showPlayersList(ArrayList<Player> players) {
 
         for (Player p : players) {
             System.out.println("Adding person to list: " + p.getLastName());
@@ -248,13 +263,15 @@ public class IAexample extends JFrame {
         }
 
     }
-    public void refreshPlayersList() {
 
-        players = max.getPlayers();
+    public void refreshPlayersList() {
+      // players=null;
+      //  max = new MaxDatabase();
+       players = max.getPlayers();
         listPlayersModel.removeAllElements();
         System.out.println("Removing all people from list ");
         showPlayersList(players);
-       }
+    }
 
 }
 

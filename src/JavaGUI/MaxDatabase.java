@@ -54,8 +54,8 @@ public class MaxDatabase
         }
     }
     public void loadPlayerFile() {
-        // String filename = "players_data.json";
-        String filename = "output.json";
+        String filename = "players_data.json";
+      //  String filename = "output.json";
         String fileData = loadFileToString(filename);
         // System.out.println(fileData);
         if (fileData != null) {
@@ -68,11 +68,12 @@ public class MaxDatabase
                 Player p = new Player(o.getString("firstName"),
                         o.getString("lastName"),
                         o.getString("team"),
+                        o.getInt("classification") ,
                         o.getInt("benchMax"),
                         o.getInt("squatMax"),
                         o.getInt("inclineMax"),
-                        o.getInt("powerMax"),
-                        o.getInt("classification")
+                        o.getInt("powerMax")
+
                 );
                 // Add the Player object to the ArrayList of players
                 players.add(p);
