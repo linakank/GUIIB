@@ -18,7 +18,7 @@ public class searchForm extends JFrame {
         super("My fancy contacts project");
         this.panel1 = panel1;
         this.setContentPane(this.panel1);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
 
         // start();
