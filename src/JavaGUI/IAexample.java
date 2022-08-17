@@ -1,10 +1,15 @@
 package JavaGUI;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +37,8 @@ public class IAexample extends JFrame {
     private JButton filterButton;
     private JButton JTableButton;
     private JButton viewButton;
+    private JButton showListButton;
+    private JButton saveButton;
     private JTable table;
     private DefaultListModel listPlayersModel;
     JFrame f = new JFrame();
@@ -47,7 +54,8 @@ public class IAexample extends JFrame {
         this.pack();
         max = new MaxDatabase();
         keyboard = new Scanner(System.in);
-
+        listPlayersModel = new DefaultListModel();
+        listPlayers.setModel(listPlayersModel);
         start();
 
 
@@ -104,7 +112,7 @@ public class IAexample extends JFrame {
         JTableButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                listPlayersModel.removeAllElements();
 
             }
         });
@@ -116,6 +124,48 @@ public class IAexample extends JFrame {
                 t.setVisible(true);
             }
         });
+        showListButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                refreshPlayersList();
+            }
+        });
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                savePlayersFile();
+
+                    }
+
+
+
+        });
+
+    }
+
+    private void savePlayersFile() {
+        // Convert the ArrayList of Person objects into a JSONArray of JSONObjects
+        JSONArray ja = new JSONArray();
+        for (Player p : players) {
+            JSONObject jo = new JSONObject(p);
+            ja.put(jo);
+        }
+        // Save the JSONArray to a text file
+        saveFileFromString("players_data.json", ja.toString());
+
+    }
+    private boolean saveFileFromString(String filename, String data) {
+        try {
+            FileWriter fw = new FileWriter(filename);
+            PrintWriter output = new PrintWriter(fw);
+            output.println(data);
+            output.close();
+            fw.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("[saveFileFromString] error saving " + filename);
+            return false;
+        }
     }
 
 
@@ -189,35 +239,7 @@ public class IAexample extends JFrame {
 
 
 
-    public void showTable(ArrayList<Player> players) {
-        Object[][] data = new String[players.size()][8];
-        // String[][] data = new String[players.size()][8];
-        String column[] = {"FirstName", "LastName", "Team", "BenchMax", "squatMax", "inclineMax", "powerMax", "classification"};
-        System.out.println(players.get(0).getFirstName());
-        for (int i = 0; i < players.size(); i++) {
-            data[i][0] = players.get(i).getFirstName();
-            data[i][1] = players.get(i).getLastName();
-            data[i][2] = players.get(i).getTeam();
-            data[i][3] = String.valueOf(players.get(i).getBenchMax());
-            data[i][4] = String.valueOf(players.get(i).getSquatMax());
-            data[i][5] = String.valueOf(players.get(i).getInclineMax());
-            data[i][6] = String.valueOf(players.get(i).getPowerMax());
-            data[i][7] = String.valueOf(players.get(i).getClassification());
-        }
-        JTable table_players = new JTable(data, column);
-        JScrollPane sp = new JScrollPane(table_players);
-        table_players.setCellSelectionEnabled(true);
-        ListSelectionModel select = table_players.getSelectionModel();
-        select.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        //   players=max.getPlayers();
-        listPlayersModel = new DefaultListModel();
-        listPlayers.setModel(listPlayersModel);
 
-        refreshPlayersList();
-        f.add(sp);
-        f.setSize(600, 300);
-        f.setVisible(true);
-    }
     public void showPlayersList( ArrayList<Player> players) {
 
         for (Player p : players) {
@@ -227,8 +249,7 @@ public class IAexample extends JFrame {
 
     }
     public void refreshPlayersList() {
-        listPlayersModel = new DefaultListModel();
-        listPlayers.setModel(listPlayersModel);
+
         players = max.getPlayers();
         listPlayersModel.removeAllElements();
         System.out.println("Removing all people from list ");

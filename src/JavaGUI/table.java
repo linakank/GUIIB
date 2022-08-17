@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,22 +18,21 @@ public class table extends JFrame {
     private JPanel panelTabel;
     private JTable showTable;
     private JScrollPane scrollPane;
-    private JButton button2;
+    private JButton addButton;
     private JPanel panelDown;
     private JButton filterButton;
     private JPanel panel;
     private JComboBox teamCombo;
     private JComboBox lastCombo;
     private JTextField textField1;
-    private JButton button4;
+    private JButton saveButton;
 
     public table() {
         super("Players list");
         MaxDatabase max = new MaxDatabase();
         ArrayList<Player> players = max.getPlayers();
-        //   ArrayList<Player> players = max.getPlayers();
+
         createTable(players);
-        createTeamCombo(players);
         createTeamCombo(players);
         this.setSize(1000, 500);
         this.mainPanelTable = mainPanelTable;
@@ -52,6 +52,18 @@ public class table extends JFrame {
             public void itemStateChanged(ItemEvent e) {
                 ArrayList<Player> teamplayers = filterTeam(players);
                 createTable(teamplayers);
+            }
+        });
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+    }
+        });
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
             }
         });
     }
